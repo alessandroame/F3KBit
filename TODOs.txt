@@ -1,0 +1,24 @@
+Learn how to use position sensor
+
+LAUNCH Detector
+Use position sensor to detect 1/n turn around the z axis at v speed.
+Try to do a calibration process
+
+LANDING 
+It must be an explicit user action.
+I can't figure with the actual hw how to detect automatically the landing.
+Available ideas:
+	- tap on display
+	- whirst shake
+	- whirst turn 
+
+Define a task
+May be a sequence of taskItem
+
+TaskItem
+Name
+Duration
+Alerts (start, count down .. )
+
+
+
