@@ -73,7 +73,7 @@ function onOrientationChanged(q){
     outputs[i].text=toDegrees(angles[i]);
   }
   ao.onOrientationChanged(angles[4]);
-  az.onValueChanged(angle[4]);
+  az.onValueChanged(angles[4]);
 }
 
 

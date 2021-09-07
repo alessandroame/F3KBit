@@ -10,6 +10,7 @@ export class AxisWidget{
     onValueChanged(value){
         // x:100=value:|min-max|
         // x= 100*value/this.scale
+        if (value!="Nan") return;
         let scaled=100*(value-this.offset)/this.scale;
         console.log(value+" "+scaled);
         this.bar.style.fill=(scaled>0)?"green":"red";

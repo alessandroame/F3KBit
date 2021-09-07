@@ -15,7 +15,7 @@ export class AngleObserver{
         else{
             this.index++;
         }
-        this.accumulator[this.index]=value.toFixed(0)*1;
+        this.accumulator[this.index]=value*1;
         //console.log(JSON.stringify(this.accumulator));
         this.update();
     }
