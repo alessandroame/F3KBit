@@ -1,13 +1,9 @@
 import document from "document";
 import { OrientationSensor } from "orientation";
+import { AxisWidget } from "./axis_widget";
 import { display } from "display";
 
 display.autoOff = false;
-
-let orientation = new OrientationSensor({ frequency: 25 });
-orientation.onreading = function() {
-    onOrientationChanged(me.orientation.quaternion);
-  };
 
 let inputs=[
     document.getElementById("i0"),
@@ -23,6 +19,8 @@ let outputs=[
     document.getElementById("o3")
 ];
 
+let angles=[0,0,0,0];
+
 let controller = document.getElementById("controller");
 controller.onmousemove = function(evt) {
   let v=(evt.screenY-150)/150;
@@ -31,9 +29,14 @@ controller.onmousemove = function(evt) {
     //TODO ;
 }
 
-let a1=new AxisController("axis_1"-180,180);
+let a1=new AxisWidget("axis_1"-180,180);
 //TODO
 
+let orientation = new OrientationSensor({ frequency: 10 });
+orientation.onreading = function() {
+    onOrientationChanged(orientation.quaternion);
+  };
+orientation.start();
 
 function onOrientationChanged(q){
   let qr = q[0];
@@ -62,6 +65,12 @@ function onOrientationChanged(q){
     inputs[i].text=q[i].toFixed(2);
     outputs[i].text=toDegrees(angles[i]);
   }
+}
+
+
+function toDegrees(value){
+  let res=value*180/Math.PI;
+  return res.toFixed(0);
 }
 
 

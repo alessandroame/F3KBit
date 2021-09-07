@@ -1,5 +1,5 @@
 import document from "document";
-export class AxisController{
+export class AxisWidget{
     constructor (id,min,max){
         this.id=id;
         this.scale=Math.abs(min-max);
