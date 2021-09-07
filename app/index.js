@@ -2,6 +2,7 @@ import document from "document";
 import { OrientationSensor } from "orientation";
 import { AxisWidget } from "./axis_widget";
 import { display } from "display";
+import { AngleObserver } from "./angle_observer";
 
 display.autoOff = false;
 
@@ -26,10 +27,16 @@ controller.onmousemove = function(evt) {
   let v=(evt.screenY-150)/150;
   if (v<0) v=-1-v;
   else v=1-v;
-    //TODO ;
+
+  var angle=v*360-180;
+  ao.onOrientationChanged(angle);
 }
 
-let a1=new AxisWidget("axis_1"-180,180);
+let az=new AxisWidget("axisZ",-180,180);
+var ao=new AngleObserver((v)=>{
+  //console.log(v);
+  az.onValueChanged(v);
+});
 //TODO
 
 let orientation = new OrientationSensor({ frequency: 10 });
@@ -65,6 +72,8 @@ function onOrientationChanged(q){
     inputs[i].text=q[i].toFixed(2);
     outputs[i].text=toDegrees(angles[i]);
   }
+  ao.onOrientationChanged(angles[4]);
+  az.onValueChanged(angle[4]);
 }
 
 

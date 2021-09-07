@@ -11,7 +11,7 @@
     "appUUID": "64957039-e861-4b55-9984-cab06bc90d4b",
     "appType": "app",
     "appDisplayName": "F3K",
-    "iconFile": "resources/icon.png",
+    "iconFile": "resources/img/app_icon.png",
     "wipeColor": "#ffffff",
     "requestedPermissions": [],
     "buildTargets": [

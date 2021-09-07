@@ -1,7 +1,7 @@
 <svg fill="white">
   <defs>
     <symbol id="axis_widget">
-      <rect id="bar" x="-5" width="5" y="0" height="1" fill="red"/>
+      <rect id="bar" x="0" width="0" y="0" height="10"/>
     </symbol>
   </defs>
   <text id="i0" x="15%" y="15%" text-length="6">q0</text>
@@ -13,6 +13,8 @@
   <text id="o1" x="45%" y="35%" pointer-events="visible" text-length="6">x angle</text>
   <text id="o2" x="45%" y="55%" pointer-events="visible" text-length="6">y angle</text>
   <text id="o3" x="45%" y="75%" pointer-events="visible" text-length="6">z angle</text> 
+
+  <use href="#axis_widget" id="axisZ" x="0%" y="80%"/>
 
    <rect id="controller" pointer-events="visible" x="80%" y="0" width="20%" height="100%" fill="red"/>
 </svg>
