@@ -1,20 +1,7 @@
 <svg fill="white">
-  <defs>
-    <symbol id="axis_widget">
-      <rect id="bar" x="0" width="0" y="0" height="10"/>
-    </symbol>
-  </defs>
-  <text id="i0" x="15%" y="15%" text-length="6">q0</text>
-  <text id="i1" x="15%" y="35%" text-length="6">q1</text>
-  <text id="i2" x="15%" y="55%" text-length="6">q2</text>
-  <text id="i3" x="15%" y="75%" text-length="6">q3</text>    
-   
-  <text id="o0" x="45%" y="15%" pointer-events="visible" text-length="6">angle</text>
-  <text id="o1" x="45%" y="35%" pointer-events="visible" text-length="6">x angle</text>
-  <text id="o2" x="45%" y="55%" pointer-events="visible" text-length="6">y angle</text>
-  <text id="o3" x="45%" y="75%" pointer-events="visible" text-length="6">z angle</text> 
+  
+  <use href="#chart" id="launch_chart" x="0%" y="50%"/>
 
-  <use href="#axis_widget" id="axisZ" x="0%" y="80%"/>
+   <rect id="controller" pointer-events="visible" x="80%" y="0" width="20%" height="100%" fill="red" opacity="0.4"/>
 
-   <rect id="controller" pointer-events="visible" x="80%" y="0" width="20%" height="100%" fill="red"/>
 </svg>
