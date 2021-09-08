@@ -3,7 +3,7 @@ export class LaunchDetector{
     constructor (onLaunchTriggered,timeout) {
         let me=this;
         me.accumulator=[];
-        me.size=10;
+        me.size=100;
         me.index=0;
         me.onLaunchTriggered=onLaunchTriggered;
         me.orientation = new OrientationSensor({ frequency: 4 });
@@ -62,9 +62,9 @@ export class LaunchDetector{
         if (res>1)
         {
             res=Math.abs(v1+v2);
-            console.log("++++++++",v1,v2,res);
+            //console.log("++++++++",v1,v2,res);
         } else
-            console.log("--------",v1,v2,res);
+            //console.log("--------",v1,v2,res);
         return res;
     }
 
