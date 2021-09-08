@@ -17,7 +17,9 @@ function onLaunchTriggered(){
 let controller = document.getElementById("controller");
 controller.onmousemove = function(evt) {
   let v=(evt.screenY-150)/150;
-  if (v<0) v=-1-v;
-  else v=1-v;
+  if (v>0)
+    v=1-v;
+  else
+    v=-1-v;
   launchDetector.accumulate(v);
 }

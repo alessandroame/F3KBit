@@ -51,11 +51,21 @@ export class LaunchDetector{
             this.accumulator=this.accumulator.slice(1,this.index);
             this.index=this.size-1;
         }
-        this.accumulator[this.index]=value;
-        lastValue=
+        this.accumulator[this.index]=this.diff(value,this.lastValue);
+        this.lastValue=value;
         //console.log(JSON.stringify(this.accumulator));
         if (this.chart!=null) this.chart.update(this.accumulator);
     }
-
+    
+    diff(v1,v2){
+        let res=Math.abs(v1-v2);
+        if (res>1)
+        {
+            res=Math.abs(v1+v2);
+            console.log("++++++++",v1,v2,res);
+        } else
+            console.log("--------",v1,v2,res);
+        return res;
+    }
 
 }
