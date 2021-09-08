@@ -18,6 +18,5 @@ export class Chart{
             if (!dSum||!scale) continue;
             this.chart.getElementById("v"+i).y2=100*dSum/scale;
         }
-
     }
 }
