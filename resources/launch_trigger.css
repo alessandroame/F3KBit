@@ -1,0 +1,17 @@
+.application-fill           { fill: deeppink; }
+.foreground-fill            { fill: fb-white; }
+.background-fill            { fill: fb-black; }
+
+#calibrateButton #text {
+  text-buffer: "Calibrate";
+}
+
+#startButton #text {
+  text-buffer: "Start";
+}
+
+#title {
+  fill:deeppink;
+  font-size: 36;
+  text-buffer:"LAUNCH trigger";
+}

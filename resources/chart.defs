@@ -1,16 +1,31 @@
 <svg>
 	<defs>
+		<link rel="stylesheet" href="chart.css" />
+
 		<symbol id="chart">
-			<line id="v0" x1="0%" y1="0" x2="0%" y2="0" fill="red" stroke-width="13"/>
-			<line id="v1" x1="10%" y1="0" x2="10%" y2="0" fill="red" stroke-width="13"/>
-			<line id="v2" x1="20%" y1="0" x2="20%" y2="0" fill="red" stroke-width="13"/>
-			<line id="v3" x1="30%" y1="0" x2="30%" y2="0" fill="red" stroke-width="13"/>
-			<line id="v4" x1="40%" y1="0" x2="40%" y2="0" fill="red" stroke-width="13"/>
-			<line id="v5" x1="50%" y1="0" x2="50%" y2="0" fill="red" stroke-width="13"/>
-			<line id="v6" x1="60%" y1="0" x2="60%" y2="0" fill="red" stroke-width="13"/>
-			<line id="v7" x1="70%" y1="0" x2="70%" y2="0" fill="red" stroke-width="13"/>
-			<line id="v8" x1="80%" y1="0" x2="80%" y2="0" fill="red" stroke-width="13"/>
-			<line id="v9" x1="90%" y1="0" x2="90%" y2="0" fill="red" stroke-width="13"/>
+			<line x1="0%" y1="0" x2="100%" y2="0" fill="yellow" stroke-width="1" opacity="0.3"/>
+		
+			
+			<line id="v0" x1="0%" y1="0" x2="0%" y2="1" class="bar" stroke-width="15"/>
+<line id="v1" x1="5%" y1="0" x2="5%" y2="1" class="bar" stroke-width="15"/>
+<line id="v2" x1="10%" y1="0" x2="10%" y2="1" class="bar" stroke-width="15"/>
+<line id="v3" x1="15%" y1="0" x2="15%" y2="1" class="bar" stroke-width="15"/>
+<line id="v4" x1="20%" y1="0" x2="20%" y2="1" class="bar" stroke-width="15"/>
+<line id="v5" x1="25%" y1="0" x2="25%" y2="1" class="bar" stroke-width="15"/>
+<line id="v6" x1="30%" y1="0" x2="30%" y2="1" class="bar" stroke-width="15"/>
+<line id="v7" x1="35%" y1="0" x2="35%" y2="1" class="bar" stroke-width="15"/>
+<line id="v8" x1="40%" y1="0" x2="40%" y2="1" class="bar" stroke-width="15"/>
+<line id="v9" x1="45%" y1="0" x2="45%" y2="1" class="bar" stroke-width="15"/>
+<line id="v10" x1="50%" y1="0" x2="50%" y2="1" class="bar" stroke-width="15"/>
+<line id="v11" x1="55%" y1="0" x2="55%" y2="1" class="bar" stroke-width="15"/>
+<line id="v12" x1="60%" y1="0" x2="60%" y2="1" class="bar" stroke-width="15"/>
+<line id="v13" x1="65%" y1="0" x2="65%" y2="1" class="bar" stroke-width="15"/>
+<line id="v14" x1="70%" y1="0" x2="70%" y2="1" class="bar" stroke-width="15"/>
+<line id="v15" x1="75%" y1="0" x2="75%" y2="1" class="bar" stroke-width="15"/>
+<line id="v16" x1="80%" y1="0" x2="80%" y2="1" class="bar" stroke-width="15"/>
+<line id="v17" x1="85%" y1="0" x2="85%" y2="1" class="bar" stroke-width="15"/>
+<line id="v18" x1="90%" y1="0" x2="90%" y2="1" class="bar" stroke-width="15"/>
+<line id="v19" x1="95%" y1="0" x2="95%" y2="1" class="bar" stroke-width="15"/>
         </symbol>
 	</defs>
 </svg>

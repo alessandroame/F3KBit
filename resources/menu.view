@@ -1,0 +1,34 @@
+<svg fill="gray">
+    <defs>
+        <link rel="stylesheet" href="menu.css" />
+
+        <link rel="import" href="/mnt/sysassets/system_widget.defs" />
+
+        <link rel="import" href="/mnt/sysassets/widgets/baseview_widget.defs" />
+        <link rel="import" href="/mnt/sysassets/widgets/scrollbar.defs" />
+        <link rel="import" href="/mnt/sysassets/widgets/tile_list_widget.defs" />
+    
+        <symbol id="my-item" href="#tile-list-item" class="list-item">
+            <rect class="bg" />
+            <text id="text" />
+            <rect class="line" />
+            <rect id="touch" pointer-events="all" >
+                <animate attributeName="opacity" begin="click" from="0.7" to="0.3" dur="0.3" final="restore" />
+             </rect>
+        </symbol>
+    </defs>
+
+    <use id="myList" href="#tile-list" class="horizontal-pad">
+        <var id="separator-height-bottom" value="6" />
+        <use id="item1" href="#my-item">
+            <set href="#text" attributeName="text-buffer" to="LAUNCH test" />
+        </use>
+        <use id="item2" href="#my-item">
+            <set href="#text" attributeName="text-buffer" to="Landing test" />
+        </use>
+        <use id="item3" href="#my-item">
+            <set href="#text" attributeName="text-buffer" to="Fly timer" />
+        </use>
+
+    </use>
+</svg>

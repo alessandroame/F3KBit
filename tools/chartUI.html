@@ -1,9 +1,9 @@
 <html>
 <body>
 <script>
-	var count=10;
+	var count=20;
 	for (var i=0;i<count;i++){
-		var s=`<line id="v${i}" x1="${100/count*i}%" y1="0" x2="${100/count*i}%" y2="1" fill="red" stroke-width="${100/count-2}"/>`;
+		var s=`<line id="v${i}" x1="${100/count*i}%" y1="0" x2="${100/count*i}%" y2="1" class="bar" stroke-width="15"/>`;
 		document.write(escapeHtml(s)+"<br/>");
 	}
 	

@@ -1,56 +1,59 @@
 import { OrientationSensor } from "orientation";
-export class LaunchDetector{
-    constructor (onLaunchTriggered) {
+
+export class LaunchTrigger{
+    onLaunchTriggered=null;
+    calibrationEnable=false;
+    onCalibrated=null;
+    onValueChanged=null;
+    threshold=3;
+    accumulatorSize=20;
+    
+    constructor(timeoutInSeconds,frequency){
+        console.log("LaunchTrigger CTOR enter");
         let me=this;
-        me.accumulator=[];
-        me.accumulatorSum=0;
-        me.size=10;
-        me.index=-1;
-        me.onLaunchTriggered=onLaunchTriggered;
-        me.orientation = new OrientationSensor({ frequency: 10 });
+        me.timeoutInSeconds=timeoutInSeconds??30;
+
+        me.orientation = new OrientationSensor({ frequency: frequency??10 });
         me.orientation.addEventListener("reading", ()=> {
+            //sconsole.log("reading");
             me.onOrientationChanged(me.orientation.quaternion);
         });
-        me.calibrationMode=false;
-        this.lastValue=null;
-        this.isStarted=false;
+        console.log("LaunchTrigger CTOR exit");
     }
-        
-    start(threshold){
-        this.threshold=threshold??2;
+
+    start(){
+        console.log("LaunchTrigger START enter");
         this.accumulator=[];
         this.accumulatorSum=0;
         this.accumulatorSumMax=0;
         this.index=-1;
         this.isStarted=true;
         this.orientation.start();
+        this.timeoutId=setTimeout(() => {
+            this.stop();
+        }, this.calibrationEnable?5000:this.timeoutInSeconds*1000);
+        console.log("LaunchTrigger START exit");
     }
 
     stop(){
+        console.log("LaunchTrigger STOP enter");
+        if (this.timeoutId) clearTimeout(this.timeoutId)
         this.isStarted=false;
         this.orientation.stop();
-        this.calibrationMode=false;
+        if (this.calibrationEnable && this.onCalibrated) {
+            this.calibrationEnable=false;
+            this.onCalibrated(this.threshold);
+        }else if (this.onLaunchTriggered){
+            this.onLaunchTriggered();
+        }
+        console.log("LaunchTrigger STOP exit");
     }
 
-    toggle(){
-        if (this.isStarted) this.stop();
-        else this.start();
-    }
-
-    calibrate(onCalibrating,onCalibrated){
-        let me=this;
+    startCalibration(){
+        this.calibrationEnable=true;
         this.start();
-        this.calibrationMode=true;
-        this.onCalibrating=onCalibrating;
-        this.onCalibrated=onCalibrated;
-        setTimeout(() => {
-            me.threshold=me.accumulatorSumMax;
-            me.onCalibrated(me.accumulatorSumMax);
-        }, 5000);
     }
-    setChart(chart){
-        this.chart=chart;
-    }
+
     onOrientationChanged(q){
         let qr = q[0];
         let qi = q[1];
@@ -64,22 +67,17 @@ export class LaunchDetector{
         //console.log(angle);
         this.accumulate(angle);
         
-        if (this.chart!=null) this.chart.update(this.accumulator);
-        
-        /*let sum=0;
-        this.accumulator.forEach(element => {
-            sum+=element;
-        });*/
-        
+        if (this.onValueChanged) this.onValueChanged(this.accumulator);
         //console.log(this.accumulatorSum);
-        if (this.calibrationMode){
+        if (this.calibrationEnable){
             this.accumulatorSumMax=Math.max(this.accumulatorSumMax,Math.abs(this.accumulatorSum));
             this.onCalibrating(this.accumulatorSum);
             //console.log(this.accumulatorSum);
         }else{
             if (Math.abs(this.accumulatorSum)>this.threshold) {
                 console.log("before on trigger threshold:"+ this.threshold);
-                this.onLaunchTriggered();
+                this.stop();
+                console.log("before on trigger threshold:"+ this.threshold);
             }
         }
     }
@@ -89,10 +87,10 @@ export class LaunchDetector{
 
         if (!value) value=0;
         this.index++;
-        if (this.index>=this.size) {
+        if (this.index>=this.accumulatorSize) {
             this.accumulatorSum-=this.accumulator[0];
-            this.index=this.size-1;
-            this.accumulator=this.accumulator.slice(1,this.size);
+            this.index=this.accumulatorSize-1;
+            this.accumulator=this.accumulator.slice(1,this.accumulatorSize);
         }
         if (this.lastValue==null)this.lastValue=value;
         
@@ -101,6 +99,7 @@ export class LaunchDetector{
 
         this.accumulator[this.index]=diff;
         this.lastValue=value;
+
         //console.log(value+" "+this.index+" "+ this.accumulator[this.index]);
         //console.log("value: "+value,JSON.stringify(this.accumulator));
     }
@@ -116,5 +115,4 @@ export class LaunchDetector{
         //console.error("v1: "+v1+"v2: "+v2+" res: "+res);
         return res;
     }
-
 }

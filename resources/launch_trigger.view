@@ -1,0 +1,16 @@
+<svg>
+    <defs>
+        <link rel="stylesheet" href="launch_trigger.css" />
+        <link rel="import" href="chart.defs" />
+        <link rel="import" href="/mnt/sysassets/widgets/text_button.defs" />
+    </defs>
+
+    <use href="#chart" id="chart" x="0%" y="50%"/>
+
+<text id="title" x="50%" y="40" text-anchor="middle" />
+
+    <g id="buttons">
+    <use id="calibrateButton" href="#text-button" class="text-button bottom left secondary application-fill" />
+    <use id="startButton" href="#text-button" class="text-button bottom right application-fill" />
+    </g>
+</svg>

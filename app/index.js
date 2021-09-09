@@ -1,45 +1,47 @@
-import document from "document";
-import { LaunchDetector } from "./launch_detector";
-import { Chart } from "./chart";
+import * as document from "document";
 import { display } from "display";
 import { vibration } from "haptics";
+import {me} from "appbit";
+import { MenuVM } from "./menu_vm";
+import { LaunchTriggerVM } from "./launch_trigger_vm";
 
-display.autoOff = false;
-let launchDetector=new LaunchDetector(onLaunchTriggered);
-launchDetector.start();
+me.appTimeoutEnabled = false;
 
-let chart=new Chart("launch_chart");
-launchDetector.setChart(chart);
-document.getElementById("status").textContent="waiting for launch..";
-function onLaunchTriggered(){
-  launchDetector.stop();
-  vibration.start("nudge-max");
-  document.getElementById("status").textContent="launch triggered";
-  console.log("launch triggered");
-}
+navigate("menu.view",()=>{
+  let menu=new MenuVM();
+  menu.onItemClicked=(i)=>{
+    console.log(`menu.onItemClicked ${i}`);
+    switch (i) {
+      case 0:
+        openLaunchTrigger();
+        break;
+      default:
+        console.warn(`menu.onItemClicked unhandled item #${i}`);
+    }
+  }
+});
 
-let leftBtn = document.getElementById("leftBtn");
-leftBtn.onclick=()=>{
-  launchDetector.calibrate((v)=>{
-    document.getElementById("status").textContent=v.toFixed(2);
-  },(v)=>{
-    document.getElementById("status").textContent="Done "+v.toFixed(2);
-    launchDetector.stop();
+function openLaunchTrigger(){
+  console.log("openLaunchTrigger enter");
+  navigate("launch_trigger.view",()=>{
+    var lt=new LaunchTriggerVM();
   });
-}
-let rigthBtn = document.getElementById("rigthBtn");
-rigthBtn.onmousemove = function(evt) {
-  //simulateZAxis(evt);
-}
-rigthBtn.onclick=()=>{
-  launchDetector.toggle();
+  console.log("openLaunchTrigger exit");
 }
 
-function simulateZAxis(evt){
-  let v=(evt.screenY-150)/150;
-  if (v>0)
-    v=1-v;
-  else
-    v=-1-v;
-  launchDetector.accumulate(v);
+function navigate(view,onViewCreated){
+  document.location.replace(view).then(()=>{
+    console.log("view: "+view+" loaded enter");
+    onViewCreated();
+    console.log("view: "+view+" loaded exit");
+  }).catch(err => { console.error("navigate "+view+" throws: "+err) });
+}
+
+
+function modal(view,onViewCreated){
+  document.location.assign(view).then(()=>{
+    console.log("modal "+view+" loaded enter");
+    onViewCreated();
+    console.log("modal "+view+" loaded exit");
+  }).catch(err => { console.error("modal "+view+" throws: "+err) });
 }
