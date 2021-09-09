@@ -52,13 +52,13 @@ export class LaunchTriggerVM{
         startBtn.onclick= (evt) => {
             console.log("start clicked");
             me.trigger.start();
-            me.startSimulatorSensor();
+            //me.startSimulatorSensor();
 
         };
         calibrateBtn.onclick=(evt) => {
             console.log("calibrate clicked");
             me.trigger.startCalibration();
-            me.startSimulatorSensor();
+            //me.startSimulatorSensor();
         };
 
     }

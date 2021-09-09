@@ -87,6 +87,7 @@ export class LaunchTrigger{
         if (this.onValueChanged) this.onValueChanged(this.filter.values);
         if (this.calibrationEnable){
             this.threshold=Math.max(this.threshold,this.filter.sum);
+            if (this.onUpdate) this.onUpdate(angle,delta,this.threshold);
         }else{
             
             if (this.filter.sum>this.threshold) {
@@ -94,8 +95,8 @@ export class LaunchTrigger{
                 this.stop();
                 console.log("before on trigger threshold:"+ this.threshold);
             }
+            if (this.onUpdate) this.onUpdate(angle,delta,this.filter.sum);
         }
-        if (this.onUpdate) this.onUpdate(angle,delta,this.filter.sum);
         this.lastAngle=angle;
         //console.log(angle+" "+delta+" "+ this.filter.sum);
     }

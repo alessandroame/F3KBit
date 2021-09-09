@@ -12,7 +12,7 @@ export class Filter{
     }
 
     push(value){
-        console.log(value);
+        //console.log(value);
         this.sum-=this.values[0];
         this.values=this.values.slice(1,this.size);
         this.values[this.size-1]=value;
