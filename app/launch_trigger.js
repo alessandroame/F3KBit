@@ -5,7 +5,7 @@ export class LaunchTrigger{
     onLaunchTriggered=null;
     calibrationEnable=false;
     onCalibrated=null;
-    onDataAvailable=null;
+    onUpdate=null;
     onValueChanged=null;
     threshold=1;
     filter=new Filter(20);
@@ -17,7 +17,7 @@ export class LaunchTrigger{
         let me=this;
         me.timeoutInSeconds=timeoutInSeconds??30;
 
-        me.orientation = new OrientationSensor({ frequency: frequency??10 });
+        me.orientation = new OrientationSensor({ frequency: frequency??20 });
         me.orientation.addEventListener("reading", ()=> {
             //sconsole.log("reading");
             me.onOrientationChanged(me.orientation.quaternion);
@@ -27,7 +27,7 @@ export class LaunchTrigger{
     }
     reset(){
         this.filter=new Filter(20);
-        this.lastValue=null;
+        this.lastAngle=null;
         this.lastDiff=0;
         this.isStarted=false;
     }
@@ -49,6 +49,7 @@ export class LaunchTrigger{
         this.isStarted=false;
         this.orientation.stop();
         if (this.calibrationEnable && this.onCalibrated) {
+            console.log("new threshold is "+this.threshold)
             this.onCalibrated(this.threshold);
         }else if (this.onLaunchTriggered){
             this.onLaunchTriggered();
@@ -59,7 +60,7 @@ export class LaunchTrigger{
 
     startCalibration(){
         this.calibrationEnable=true;
-        this.threshold=0;
+        this.threshold=0.000000001;
         this.start();
     }
 
@@ -72,24 +73,21 @@ export class LaunchTrigger{
         // Yaw:
         let t3 = 2*(qr*qk + qi*qj);
         let t4 = 1 - 2*(qj*qj + qk*qk);
-        let angle = Math.atan2(t3, t4)/Math.PI;
-
-        console.log(angle);
+        let angle = Math.atan2(t3, t4)/Math.PI; //range -1 to 1
         this.accumulate(angle);
         //console.log(angle);
     }
 
-    accumulate(value){
-        if (this.lastValue==null) this.lastValue=value;
-        let d=this.diff(value,this.lastValue)
-        this.filter.push(d);
+    accumulate(angle){
+        //console.log(angle);
+        if (this.lastAngle==null) this.lastAngle=angle;
+
+        let delta=this.diff(angle,this.lastAngle);
+        this.filter.push(delta);
         if (this.onValueChanged) this.onValueChanged(this.filter.values);
         if (this.calibrationEnable){
             this.threshold=Math.max(this.threshold,this.filter.sum);
-            this.onDataAvailable(value,d,this.threshold);
-            //console.log(this.accumulatorSum);
         }else{
-            this.onDataAvailable(value,d,this.filter.sum);
             
             if (this.filter.sum>this.threshold) {
                 console.log("before on trigger threshold:"+ this.threshold);
@@ -97,15 +95,18 @@ export class LaunchTrigger{
                 console.log("before on trigger threshold:"+ this.threshold);
             }
         }
-        this.lastValue=value;
-        //console.log(value+" "+this.index+" "+ this.accumulator[this.index]);
-        //console.log("value: "+value,JSON.stringify(this.accumulator));
+        if (this.onUpdate) this.onUpdate(angle,delta,this.filter.sum);
+        this.lastAngle=angle;
+        //console.log(angle+" "+delta+" "+ this.filter.sum);
     }
 
     diff(newValue,oldValue){
         var res=Math.abs(newValue-oldValue);
-        if (res>this.maxDiff) res=this.lastDiff;
-        //console.warn(oldValue+ " "+newValue);
+        //console.log(res);
+        if (res>1) {
+            res=2-res;
+          //  console.warn("complementar "+ res);
+        }
         this.lastDiff=res;
         return res;
     }

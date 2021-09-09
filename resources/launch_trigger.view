@@ -2,10 +2,14 @@
     <defs>
         <link rel="stylesheet" href="launch_trigger.css" />
         <link rel="import" href="chart.defs" />
+        <link rel="import" href="launch_progress.defs" />
         <link rel="import" href="/mnt/sysassets/widgets/text_button.defs" />
+        
     </defs>
 
-    <use href="#chart" id="chart" x="0%" y="50%"/>
+    <use href="#chart" id="chart" x="0%" y="70%"/>
+
+    <use href="#launch_progress" id="launch_progress" x="25%" y="25%"/>
 
 <text id="title" x="50%" y="40" text-anchor="middle" />
 

@@ -6,7 +6,7 @@ export class ChartVM{
         this.chart=document.getElementById(id);
         this.items = this.chart.getElementsByClassName("bar");
         this.items.forEach((element, index) => {
-            element.y2=10;
+            element.height=0;
         });
         console.log("ChartVM CTOR exit");
     }
@@ -23,9 +23,11 @@ export class ChartVM{
                 if (!d) continue;
                 dSum+=d;
             }
-            //console.log("__________",data.length+" "+scale,dSum,i);
+            //console.log(dSum+"  "+xScale);
 
-            this.items[i].y2=-300*dSum;
+            var h=500*dSum;
+            this.items[i].y=-h;
+            this.items[i].height=h;
         }
     }
 }
