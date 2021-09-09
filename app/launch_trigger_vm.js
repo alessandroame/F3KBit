@@ -11,14 +11,31 @@ export class LaunchTriggerVM{
         let me=this;
         console.log("LaunchTriggerVM CTOR enter");
         me.trigger.onValueChanged=(v)=>{me.chart.update(v);};
-        me.trigger.onCalibrating=(v)=>{
-            document.getElementById("title").textContent="max: "+v.toFixed(1);
+        me.trigger.onDataAvailable=(v,d,sum)=>{
+            document.getElementById("title").textContent=v.toFixed(2)+" | "+d.toFixed(1)+" | "+sum.toFixed(1);
         };
         me.trigger.onLaunchTriggered=()=>{
+            vibration.start("confirmation-max");
+            vibration.start("confirmation-max");
             vibration.start("confirmation-max");
         };
         me.init();
         console.log("LaunchTriggerVM CTOR exit");
+    }
+
+    startSimulatorSensor(){
+        let me=this;
+        me.simulatedValue=0;
+        if (me.simInterval) clearInterval(me.simInterval);
+        let timerid=me.simInterval=setInterval(() => {
+            me.simulatedValue-=0.2;
+            if (me.simulatedValue>Math.PI) me.simulatedValue=-Math.PI; 
+            me.trigger.accumulate(me.simulatedValue);
+
+        }, 100);
+        setTimeout(() => {
+            clearInterval(timerid);
+        }, 5000);
     }
 
     init(){
@@ -28,10 +45,13 @@ export class LaunchTriggerVM{
         startBtn.onclick= (evt) => {
             console.log("start clicked");
             me.trigger.start();
+            //me.startSimulatorSensor();
+
         };
         calibrateBtn.onclick=(evt) => {
             console.log("calibrate clicked");
             me.trigger.startCalibration();
+            //me.startSimulatorSensor();
         };
 
     }

@@ -1,13 +1,17 @@
 import { OrientationSensor } from "orientation";
+import { Filter } from "./filter";
 
 export class LaunchTrigger{
     onLaunchTriggered=null;
     calibrationEnable=false;
     onCalibrated=null;
+    onDataAvailable=null;
     onValueChanged=null;
-    threshold=3;
-    accumulatorSize=20;
-    
+    threshold=1;
+    filter=new Filter(20);
+    maxDiff=0.8;
+    lastDiff=0;
+
     constructor(timeoutInSeconds,frequency){
         console.log("LaunchTrigger CTOR enter");
         let me=this;
@@ -19,16 +23,20 @@ export class LaunchTrigger{
             me.onOrientationChanged(me.orientation.quaternion);
         });
         console.log("LaunchTrigger CTOR exit");
+        this.reset();
+    }
+    reset(){
+        this.filter=new Filter(20);
+        this.lastValue=null;
+        this.lastDiff=0;
+        this.isStarted=false;
     }
 
     start(){
         console.log("LaunchTrigger START enter");
-        this.accumulator=[];
-        this.accumulatorSum=0;
-        this.accumulatorSumMax=0;
-        this.index=-1;
-        this.isStarted=true;
+        this.reset();
         this.orientation.start();
+        this.isStarted=true;
         this.timeoutId=setTimeout(() => {
             this.stop();
         }, this.calibrationEnable?5000:this.timeoutInSeconds*1000);
@@ -41,16 +49,17 @@ export class LaunchTrigger{
         this.isStarted=false;
         this.orientation.stop();
         if (this.calibrationEnable && this.onCalibrated) {
-            this.calibrationEnable=false;
             this.onCalibrated(this.threshold);
         }else if (this.onLaunchTriggered){
             this.onLaunchTriggered();
         }
+        this.calibrationEnable=false;
         console.log("LaunchTrigger STOP exit");
     }
 
     startCalibration(){
         this.calibrationEnable=true;
+        this.threshold=0;
         this.start();
     }
 
@@ -63,56 +72,42 @@ export class LaunchTrigger{
         // Yaw:
         let t3 = 2*(qr*qk + qi*qj);
         let t4 = 1 - 2*(qj*qj + qk*qk);
-        let angle = Math.atan2(t3, t4);
-        //console.log(angle);
+        let angle = Math.atan2(t3, t4)/Math.PI;
+
+        console.log(angle);
         this.accumulate(angle);
-        
-        if (this.onValueChanged) this.onValueChanged(this.accumulator);
-        //console.log(this.accumulatorSum);
+        //console.log(angle);
+    }
+
+    accumulate(value){
+        if (this.lastValue==null) this.lastValue=value;
+        let d=this.diff(value,this.lastValue)
+        this.filter.push(d);
+        if (this.onValueChanged) this.onValueChanged(this.filter.values);
         if (this.calibrationEnable){
-            this.accumulatorSumMax=Math.max(this.accumulatorSumMax,Math.abs(this.accumulatorSum));
-            this.onCalibrating(this.accumulatorSum);
+            this.threshold=Math.max(this.threshold,this.filter.sum);
+            this.onDataAvailable(value,d,this.threshold);
             //console.log(this.accumulatorSum);
         }else{
-            if (Math.abs(this.accumulatorSum)>this.threshold) {
+            this.onDataAvailable(value,d,this.filter.sum);
+            
+            if (this.filter.sum>this.threshold) {
                 console.log("before on trigger threshold:"+ this.threshold);
                 this.stop();
                 console.log("before on trigger threshold:"+ this.threshold);
             }
         }
-    }
-
-    accumulate(value){
-        //console.warn("value: "+value,JSON.stringify(this.accumulator));
-
-        if (!value) value=0;
-        this.index++;
-        if (this.index>=this.accumulatorSize) {
-            this.accumulatorSum-=this.accumulator[0];
-            this.index=this.accumulatorSize-1;
-            this.accumulator=this.accumulator.slice(1,this.accumulatorSize);
-        }
-        if (this.lastValue==null)this.lastValue=value;
-        
-        let diff=this.diff(value,this.lastValue);
-        this.accumulatorSum+=diff;
-
-        this.accumulator[this.index]=diff;
         this.lastValue=value;
-
         //console.log(value+" "+this.index+" "+ this.accumulator[this.index]);
         //console.log("value: "+value,JSON.stringify(this.accumulator));
     }
-    
-    diff(v1,v2){
-        let res=(v1-v2);
-        if (Math.abs(res>=2))
-        {
-            //console.log("v1: "+v1+"v2: "+v2+" res: "+res);
-            res=(v1+v2);
-           // console.warn("v1: "+v1+"v2: "+v2+" res: "+res);
-        }
-        //console.error("v1: "+v1+"v2: "+v2+" res: "+res);
+
+    diff(newValue,oldValue){
+        var res=Math.abs(newValue-oldValue);
+        if (res>this.maxDiff) res=this.lastDiff;
+        //console.warn(oldValue+ " "+newValue);
+        this.lastDiff=res;
         return res;
     }
+    
 }

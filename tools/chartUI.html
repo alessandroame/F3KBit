@@ -3,7 +3,7 @@
 <script>
 	var count=20;
 	for (var i=0;i<count;i++){
-		var s=`<line id="v${i}" x1="${100/count*i}%" y1="0" x2="${100/count*i}%" y2="1" class="bar" stroke-width="15"/>`;
+		var s=`<line id="v${i}" x1="${100/count*i}%+5" y1="0" x2="${100/count*i}%+5" y2="1" class="bar" stroke-width="10"/>`;
 		document.write(escapeHtml(s)+"<br/>");
 	}
 	
