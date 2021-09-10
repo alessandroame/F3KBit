@@ -17,14 +17,23 @@ export class LaunchTriggerVM{
         me.trigger.onUpdate=(angle,delta,accumulated)=>{
             //console.log("acc "+accumulated+" thr "+me.trigger.threshold);
             me.progress.update(angle*180,accumulated/me.trigger.threshold*360);
-            document.getElementById("title").textContent=angle.toFixed(2)+" | "+delta.toFixed(1)+" | "+accumulated.toFixed(1);
+            document.getElementById("delta").textContent=delta.toFixed(1);
+            document.getElementById("accumulated").textContent=accumulated.toFixed(1);
+            document.getElementById("threshold").textContent=this.trigger.threshold.toFixed(1);
         };
 
         me.trigger.onLaunchTriggered=()=>{
-            vibration.start("confirmation-max");
-            vibration.start("confirmation-max");
+            document.getElementById("title").textContent="Launch triggered!";
             vibration.start("confirmation-max");
         };
+
+        me.trigger.onCalibrated=()=>{
+            document.getElementById("title").textContent="Calibrated: "+me.trigger.threshold;
+            vibration.start("confirmation-max");
+        }
+        /*me.trigger.onCalibrating=()=>{
+            document.getElementById("title").textContent="Calibrating: "+me.trigger.threshold;
+        }*/
         me.init();
         console.log("LaunchTriggerVM CTOR exit");
     }
@@ -58,6 +67,7 @@ export class LaunchTriggerVM{
         calibrateBtn.onclick=(evt) => {
             console.log("calibrate clicked");
             me.trigger.startCalibration();
+            document.getElementById("title").textContent="Calibrating";
             //me.startSimulatorSensor();
         };
 

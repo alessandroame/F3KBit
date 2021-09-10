@@ -25,7 +25,7 @@ export class ChartVM{
             }
             //console.log(dSum+"  "+xScale);
 
-            var h=300*dSum;
+            var h=400*dSum;
             this.items[i].y=-h;
             this.items[i].height=h;
         }

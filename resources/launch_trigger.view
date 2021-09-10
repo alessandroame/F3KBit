@@ -7,11 +7,23 @@
         
     </defs>
 
+    <text id="title" x="50%" y="40" text-anchor="middle" />
+
+    <use href="#launch_progress" id="launch_progress" x="80" y="40%"/>
+
+    
+    <text id="accumulated" x="75%-5" y="40%" text-anchor="end" class="big"> _._ </text>
+    <text  x="75%" y="40%" text-anchor="middle" class="big">/
+    </text>
+    <text id="threshold" x="75%+5" y="40%" text-anchor="start" class="small"> _._ </text>
+
+    <text  x="75%" y="55%" text-anchor="end" class="small">CUR:</text>
+    <text id="delta" x="75%" y="55%" text-anchor="start" class="small"> _._ </text>
+
+
     <use href="#chart" id="chart" x="0%" y="70%"/>
 
-    <use href="#launch_progress" id="launch_progress" x="25%" y="25%"/>
 
-<text id="title" x="50%" y="40" text-anchor="middle" />
 
     <g id="buttons">
     <use id="calibrateButton" href="#text-button" class="text-button bottom left secondary application-fill" />

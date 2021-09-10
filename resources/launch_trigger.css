@@ -10,8 +10,18 @@
   text-buffer: "Start";
 }
 
-#title {
+text{
   fill:deeppink;
-  font-size: 28;
-  text-buffer:"_____ LAUNCH trigger ____";
+}
+
+
+.big{
+  font-size: 54;
+}
+.small{
+  font-size: 32;
+}
+#title {
+  font-size: 32;
+  text-buffer:"   LAUNCH TEST   ";
 }
