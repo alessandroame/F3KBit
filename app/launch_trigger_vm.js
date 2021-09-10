@@ -2,6 +2,7 @@ import { ChartVM } from "./chart_vm";
 import { LaunchProgressVM } from "./launch_progress_vm";
 import * as document from "document";
 import { LaunchTrigger } from "./launch_trigger";
+import { TouchSliderVM } from "./touch_slider_vm";
 import { vibration } from "haptics";
 
 
@@ -9,6 +10,8 @@ export class LaunchTriggerVM{
     chart=new ChartVM("chart");
     progress=new LaunchProgressVM("launch_progress");
     trigger=new LaunchTrigger();
+    touchSlider=new TouchSliderVM("touch_slider");
+
     constructor(){
         let me=this;
         console.log("LaunchTriggerVM CTOR enter");
@@ -34,26 +37,15 @@ export class LaunchTriggerVM{
         /*me.trigger.onCalibrating=()=>{
             document.getElementById("title").textContent="Calibrating: "+me.trigger.threshold;
         }*/
+
+
+        me.touchSlider.onUpdate=(v)=>{ 
+            if (me.trigger.isStarted) me.trigger.accumulate(v); 
+        };
         me.init();
         console.log("LaunchTriggerVM CTOR exit");
     }
-
-    startSimulatorSensor(){
-        let me=this;
-        me.simulatedValue=0;
-        if (me.simInterval) clearInterval(me.simInterval);
-        let timerid=me.simInterval=setInterval(() => {
-            me.simulatedValue-=0.2;
-            if (me.simulatedValue>0.9999999999) me.simulatedValue=-0.9999999999; 
-            if (me.simulatedValue<-0.9999999999) me.simulatedValue=0.9999999999; 
-            me.trigger.accumulate(me.simulatedValue);
-
-        }, 100);
-        setTimeout(() => {
-            clearInterval(timerid);
-        }, 5000);
-    }
-
+    
     init(){
         let me=this;
         let startBtn=document.getElementById("startButton");
@@ -61,14 +53,12 @@ export class LaunchTriggerVM{
         startBtn.onclick= (evt) => {
             console.log("start clicked");
             me.trigger.start();
-            //me.startSimulatorSensor();
-
+            document.getElementById("title").textContent="Detecting";
         };
         calibrateBtn.onclick=(evt) => {
             console.log("calibrate clicked");
             me.trigger.startCalibration();
             document.getElementById("title").textContent="Calibrating";
-            //me.startSimulatorSensor();
         };
 
     }

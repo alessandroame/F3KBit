@@ -1,7 +1,7 @@
 <svg>
     <defs>
         <symbol  id="launch_progress">
-            <arc id="progress" x="-80" y="-80" width="160" height="160" fill="deeppink" arc-width="10" start-angle="0" sweep-angle="0" /> 
+            <arc id="progress" x="-70" y="-70" width="140" height="140" fill="white" arc-width="40" start-angle="0" sweep-angle="0" /> 
             <g  id="direction">
                 <line x1="0" y1="0" x2="0" y2="-60" stroke-width="3"  fill="deeppink"/>
             </g>

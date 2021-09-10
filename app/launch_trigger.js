@@ -79,7 +79,7 @@ export class LaunchTrigger{
     }
 
     accumulate(angle){
-        //console.log(angle);
+        //console.log("accumulating angle: "+angle);
         if (this.lastAngle==null) this.lastAngle=angle;
 
         let delta=this.diff(angle,this.lastAngle);

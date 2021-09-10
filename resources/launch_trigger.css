@@ -1,4 +1,4 @@
-.application-fill           { fill: deeppink; }
+.application-fill           { fill: white; }
 .foreground-fill            { fill: fb-white; }
 .background-fill            { fill: fb-black; }
 
@@ -10,18 +10,16 @@
   text-buffer: "Start";
 }
 
-text{
-  fill:deeppink;
-}
-
-
 .big{
   font-size: 54;
+  fill:white;
 }
 .small{
   font-size: 32;
+  fill:white;
 }
 #title {
+  fill:white;
   font-size: 32;
   text-buffer:"   LAUNCH TEST   ";
 }
