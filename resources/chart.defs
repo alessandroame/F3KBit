@@ -1,16 +1,31 @@
 <svg>
 	<defs>
+		<link rel="stylesheet" href="chart.css" />
+
 		<symbol id="chart">
-			<line id="v0" x1="0%" y1="0" x2="0%" y2="-10%" fill="red" stroke-width="8"/>
-			<line id="v1" x1="10%" y1="0" x2="10%" y2="-20%" fill="red" stroke-width="8"/>
-			<line id="v2" x1="20%" y1="0" x2="20%" y2="1" fill="red" stroke-width="8"/>
-			<line id="v3" x1="30%" y1="0" x2="30%" y2="1" fill="red" stroke-width="8"/>
-			<line id="v4" x1="40%" y1="0" x2="40%" y2="1" fill="red" stroke-width="8"/>
-			<line id="v5" x1="50%" y1="0" x2="50%" y2="1" fill="red" stroke-width="8"/>
-			<line id="v6" x1="60%" y1="0" x2="60%" y2="1" fill="red" stroke-width="8"/>
-			<line id="v7" x1="70%" y1="0" x2="70%" y2="1" fill="red" stroke-width="8"/>
-			<line id="v8" x1="80%" y1="0" x2="80%" y2="1" fill="red" stroke-width="8"/>
-			<line id="v9" x1="90%" y1="0" x2="90%" y2="1" fill="red" stroke-width="8"/>
+			<line x1="0%" y1="0" x2="100%" y2="0" fill="deeppink" stroke-width="1" opacity="0.3"/>
+		
+<rect id="v0" x="0%" y="0" width="5%-2" height="0" class="bar"/>
+<rect id="v1" x="5%" y="0" width="5%-2" height="0" class="bar"/>
+<rect id="v2" x="10%" y="0" width="5%-2" height="0" class="bar"/>
+<rect id="v3" x="15%" y="0" width="5%-2" height="0" class="bar"/>
+<rect id="v4" x="20%" y="0" width="5%-2" height="0" class="bar"/>
+<rect id="v5" x="25%" y="0" width="5%-2" height="0" class="bar"/>
+<rect id="v6" x="30%" y="0" width="5%-2" height="0" class="bar"/>
+<rect id="v7" x="35%" y="0" width="5%-2" height="0" class="bar"/>
+<rect id="v8" x="40%" y="0" width="5%-2" height="0" class="bar"/>
+<rect id="v9" x="45%" y="0" width="5%-2" height="0" class="bar"/>
+<rect id="v10" x="50%" y="0" width="5%-2" height="0" class="bar"/>
+<rect id="v11" x="55%" y="0" width="5%-2" height="0" class="bar"/>
+<rect id="v12" x="60%" y="0" width="5%-2" height="0" class="bar"/>
+<rect id="v13" x="65%" y="0" width="5%-2" height="0" class="bar"/>
+<rect id="v14" x="70%" y="0" width="5%-2" height="0" class="bar"/>
+<rect id="v15" x="75%" y="0" width="5%-2" height="0" class="bar"/>
+<rect id="v16" x="80%" y="0" width="5%-2" height="0" class="bar"/>
+<rect id="v17" x="85%" y="0" width="5%-2" height="0" class="bar"/>
+<rect id="v18" x="90%" y="0" width="5%-2" height="0" class="bar"/>
+<rect id="v19" x="95%" y="0" width="5%-2" height="0" class="bar"/>
+
         </symbol>
 	</defs>
 </svg>

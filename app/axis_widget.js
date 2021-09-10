@@ -5,7 +5,6 @@ export class AxisWidget{
         this.bar=document.getElementById(id).getElementById("bar")
         this.scale=Math.abs(min-max);
         this.offset=(min+max)/2;
-        console.error("----------"+id);
     }
     onValueChanged(value){
         // x:100=value:|min-max|

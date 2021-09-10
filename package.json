@@ -8,10 +8,10 @@
     "@fitbit/sdk-cli": "^1.7.3"
   },
   "fitbit": {
-    "appUUID": "64957039-e861-4b55-9984-cab06bc90d4b",
+    "appUUID": "0edd5fae-1b28-4b85-ae92-80e5f706fba8",
     "appType": "app",
     "appDisplayName": "F3K",
-    "iconFile": "resources/img/app_icon.png",
+    "iconFile": "./resources/img/app_icon.png",
     "wipeColor": "#ffffff",
     "requestedPermissions": [],
     "buildTargets": [
