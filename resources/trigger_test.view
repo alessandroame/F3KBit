@@ -1,9 +1,9 @@
 <svg>
     <defs>
-        <link rel="stylesheet" href="launch_trigger.css" />
+        <link rel="stylesheet" href="trigger_test.css" />
         <link rel="import" href="chart.defs" />
         <link rel="import" href="touch_slider.defs" />
-        <link rel="import" href="launch_progress.defs" />
+        <link rel="import" href="progress.defs" />
         <link rel="import" href="/mnt/sysassets/widgets/text_button.defs" />
         
     </defs>
@@ -11,7 +11,7 @@
 
     <use href="#chart" id="chart" x="0%" y="70%"/>
 
-    <use href="#launch_progress" id="launch_progress" x="90" y="40%"/>
+    <use href="#progress" id="progress" x="90" y="40%"/>
 
     <text id="accumulated" x="75%-5" y="40%" text-anchor="end" class="big">----</text>
     <text  x="75%" y="40%" text-anchor="middle" class="big">/

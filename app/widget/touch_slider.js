@@ -1,13 +1,13 @@
 import * as document from "document";
 
-export class TouchSliderVM{
+export class TouchSliderView{
     onUpdate=null;
     constructor(id){
         let me=this;
-        console.log("TouchSliderVM CTOR enter");
+        console.log("TouchSliderView CTOR enter");
         let control=document.getElementById(id);
         control.getElementById("touch").onmousemove = (evt)=>{me.update(evt);};
-        console.log("TouchSliderVM CTOR exit");
+        console.log("TouchSliderView CTOR exit");
     }
 
     update(evt){

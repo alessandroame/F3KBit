@@ -1,31 +1,42 @@
-import { ChartVM } from "./chart_vm";
-import { LaunchProgressVM } from "./launch_progress_vm";
 import * as document from "document";
-import { LaunchTrigger } from "./launch_trigger";
-import { TouchSliderVM } from "./touch_slider_vm";
+import { ChartView } from "../widget/chart";
+import { ProgressView } from "../widget/progress";
+import { TouchSliderView } from "../widget/touch_slider";
+import { Trigger } from "../lib/trigger";
 import { vibration } from "haptics";
 
 
-export class LaunchTriggerVM{
-    chart=new ChartVM("chart");
-    progress=new LaunchProgressVM("launch_progress");
-    trigger=new LaunchTrigger();
-    touchSlider=new TouchSliderVM("touch_slider");
+export function init(){
+    console.log("session-view start");
+    return document.location.assign('trigger_test.view');
+    chart=new ChartView("chart");
+    progress=new ProgressView("progress");
+    touchSlider=new TouchSliderView("touch_slider");
+    trigger;
+}
 
-    constructor(){
+
+
+export class TriggerTestView{
+
+    constructor(sensor,axis){
         let me=this;
-        console.log("LaunchTriggerVM CTOR enter");
-        me.trigger.onValueChanged=(v)=>{me.chart.update(v);};
-
-        me.trigger.onUpdate=(angle,delta,accumulated)=>{
+        console.log("TriggerTestView CTOR enter "+(typeof sensor)+ " axis:"+axis);
+        me.trigger=new Trigger(sensor,axis);
+     
+        me.trigger.onUpdate=(trigger,value,delta)=>{
+            let angle=value*180;
+            let sum=trigger.filter.sum;
             //console.log("acc "+accumulated+" thr "+me.trigger.threshold);
-            me.progress.update(angle*180,accumulated/me.trigger.threshold*360);
+            me.progress.update(angle,sum/me.trigger.threshold*360);
             document.getElementById("delta").textContent=delta.toFixed(1);
-            document.getElementById("accumulated").textContent=accumulated.toFixed(1);
+            document.getElementById("accumulated").textContent=sum.toFixed(1);
             document.getElementById("threshold").textContent=this.trigger.threshold.toFixed(1);
+            me.chart.update(trigger.filter.values);
         };
 
-        me.trigger.onLaunchTriggered=()=>{
+        me.trigger.onTrigger=(t)=>{
+            t.stop()
             document.getElementById("title").textContent="Launch triggered!";
             vibration.start("confirmation-max");
         };
@@ -38,12 +49,11 @@ export class LaunchTriggerVM{
             document.getElementById("title").textContent="Calibrating: "+me.trigger.threshold;
         }*/
 
-
         me.touchSlider.onUpdate=(v)=>{ 
-            if (me.trigger.isStarted) me.trigger.accumulate(v); 
+            if (me.trigger.isStarted) me.trigger.push(v); 
         };
         me.init();
-        console.log("LaunchTriggerVM CTOR exit");
+        console.log("TriggerTestView CTOR exit");
     }
     
     init(){

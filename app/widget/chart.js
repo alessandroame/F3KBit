@@ -1,14 +1,15 @@
-import document from "document";
-export class ChartVM{
+import * as document from "document";
+export class ChartView{
 
     constructor(id){
-        console.log("ChartVM CTOR enter");
+        console.log("ChartView CTOR enter id["+id+"]");
         this.chart=document.getElementById(id);
+        console.log("calibration update "+this.chart);
         this.items = this.chart.getElementsByClassName("bar");
         this.items.forEach((element, index) => {
             element.height=0;
         });
-        console.log("ChartVM CTOR exit");
+        console.log("ChartView CTOR exit");
     }
 
     update(data){

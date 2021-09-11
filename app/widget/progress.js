@@ -1,13 +1,12 @@
 import * as document from "document";
 
-export class LaunchProgressVM{
+export class ProgressView{
     constructor(id){
         this.ui=document.getElementById(id);
     }
     update(heading,progress){
-        //console.log("heading "+heading);
-        //console.log("progress "+progress);
-        this.ui.getElementById("progress").sweepAngle=progress;
+        //console.log("ProgressView heading:"+heading+" progress:"+progress);
+        this.ui.getElementById("goal").sweepAngle=progress;
         this.ui.getElementById("direction").groupTransform.rotate.angle=-heading;
     }
 }

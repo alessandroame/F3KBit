@@ -1,0 +1,30 @@
+<svg>
+  <defs>  
+        <link rel="import" href="chart.defs" />
+        <link rel="import" href="touch_slider.defs" />
+        <link rel="import" href="progress.defs" />
+    </defs>
+
+  <animate attributeName="x" from="100%" to="0" begin="load" dur="0.5" easing="ease-in-out" />
+  <rect x="0" y="0" width="100%" height="100%" fill="#000000" />
+
+  <text id="test1" class="view-title h3 uppercase application-fill center-text" >
+      Calibration
+  </text>
+
+  <use href="#chart" id="chart" x="0%" y="90%"/>
+
+  <use href="#progress" id="progress" x="90" y="40%"/>
+
+  <text id="accumulated" x="75%-5" y="40%" text-anchor="end" class="big">----</text>
+  <text  x="75%" y="40%" text-anchor="middle" class="big">/
+  </text>
+  <text id="threshold" x="75%+5" y="40%" text-anchor="start" class="small">----</text>
+
+  <text  x="75%" y="55%" text-anchor="end" class="small">CUR:</text>
+  <text id="delta" x="75%" y="55%" text-anchor="start" class="small">----</text>
+
+  <use href="#touch_slider" id="touch_slider" x="0%" y="0%"/> 
+  <text id="stats" x="50%" y="97%" text-anchor="middle" class="small">reading...</text>
+
+</svg>
