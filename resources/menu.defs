@@ -9,7 +9,7 @@
         <!-- Tile list item widget -->
         <symbol id="my-tile-list-item" href="#tile-list-item">
             <rect id="tile-background" class="tile-background" />
-            <image id="icon" class="tile-list-icon" href="" />
+            <!-- <image id="icon" class="tile-list-icon" href="" /> -->
             <text id="text" class="foreground-fill" />
             <rect id="start" class="tile-background" opacity="0" pointer-events="visible" />
             <rect id="tile-divider-bottom" class="tile-divider-bottom" />

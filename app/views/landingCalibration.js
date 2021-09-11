@@ -23,17 +23,5 @@ export function update(){
 function onCalibrated(thr){
   console.log("landingCalibration onCalibrated: "+thr);
   settings.set("landingThreshold",thr);
-  setTimeout(() => {
-    console.log("landingCalibration unload");
-    document.history.back(); 
-  }, 100);
+  document.history.back(); 
 }
-
-document.addEventListener("beforeunload", (evt) => {
-  // prevent the actual unload event\
-  evt.preventDefault();
-  // reset the position of the second view
-  document.getElementId("background").animate("enable");
-  // or, reset the X coordinate
-  // document.getElementId("background").x = 0;
-});
