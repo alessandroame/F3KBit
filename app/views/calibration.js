@@ -34,7 +34,7 @@ export function update(options){
     document.getElementById("btn-calibration-done").text="Done";
     document.getElementById("btn-calibration-done").onclick=()=>{
       options.onCalibrated(trigger.threshold);
-      document.history.back();
+      document.onunload();
     };
     vibration.start("confirmation-max");
   }
@@ -49,3 +49,13 @@ function render(trigger,value,delta){
   document.getElementById("threshold").textContent=trigger.threshold.toFixed(1);
   chart.update(trigger.filter.values);
 }
+
+document.addEventListener("beforeunload", (evt) => {
+  console.log("Calibration beforeunload");
+  // prevent the actual unload event\
+  evt.preventDefault();
+  // reset the position of the second view
+  document.getElementId("background").animate("enable");
+  // or, reset the X coordinate
+  // document.getElementId("background").x = 0;
+});

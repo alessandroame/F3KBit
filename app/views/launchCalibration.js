@@ -24,7 +24,16 @@ function onCalibrated(thr){
   console.log("launchCalibration onCalibrated: "+thr);
   settings.set("launchThreshold",thr);
   setTimeout(() => {
-    console.log("landingCalibration unload");
     document.history.back(); 
   }, 1);
 }
+
+document.addEventListener("beforeunload", (evt) => {
+  console.log("landingCalibration beforeunload");
+  // prevent the actual unload event\
+  evt.preventDefault();
+  // reset the position of the second view
+  document.getElementId("background").animate("enable");
+  // or, reset the X coordinate
+  // document.getElementId("background").x = 0;
+});
