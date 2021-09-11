@@ -4,15 +4,15 @@ import * as document from "document";
 export function initMenuItem(view){
     const [buttonID, viewJSLoader] = view;
     try{
-        console.log("preparing "+buttonID);
+        console.log("preparing view item "+buttonID);
         var item=document.getElementById(buttonID);
         item.addEventListener("click", () => {
         viewJSLoader().then(({ init, update }) => {
             init().then(update).catch((err) => {
-            console.error(`Error loading view: ${err.message}`);
+                console.error(`Error loading view: ${buttonID} - ${err}`);
             });
         }).catch((err) => {
-            console.error(`Failed to load view JS: ${buttonID} - ${err.message}`);
+            console.error(`Failed to load view JS: ${buttonID} - ${err}`);
         });
         });
     }catch (error){

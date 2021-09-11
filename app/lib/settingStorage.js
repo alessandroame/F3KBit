@@ -3,14 +3,17 @@ import * as fs from "fs";
 const SETTINGS_TYPE = "cbor";
 const SETTINGS_FILE = "settings.cbor";
 
-let settings=load();
-
+let settings=load()??{};
+console.warn("Settings: "+JSON.stringify(settings));
 function load() {
     try {
-        load=fs.readFileSync(SETTINGS_FILE, SETTINGS_TYPE);
+        return fs.readFileSync(SETTINGS_FILE, SETTINGS_TYPE);
     } catch (ex) {
         console.error(ex);
-        return {};
+        return {
+            "launchThreshold":1,
+            "landingThreshold":3
+        };
     }
 }
 function saveSettings() {

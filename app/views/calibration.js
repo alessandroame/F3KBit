@@ -17,8 +17,12 @@ export function init(){
 }
 export function update(options){
   console.log("calibration update "+JSON.stringify(options) );
+ 
+  document.getElementById("btn-calibration-done").text="Reading...";
+  document.getElementById("btn-calibration-done").onclick=()=>{
+  };
+
   chart=new ChartView("chart");
-  progress=new ProgressView("progress");
   
   touchSlider=new TouchSliderView("touch_slider");
   touchSlider.onUpdate=(v)=>{ 
@@ -27,7 +31,11 @@ export function update(options){
   trigger=new Trigger(options.sensor,options.axis);
   trigger.onUpdate=render;
   trigger.onCalibrated=()=>{
-    document.getElementById("status").textContent="Calibrated: "+trigger.threshold;
+    document.getElementById("btn-calibration-done").text="Done";
+    document.getElementById("btn-calibration-done").onclick=()=>{
+      options.onCalibrated(trigger.threshold);
+      document.history.back();
+    };
     vibration.start("confirmation-max");
   }
   trigger.startCalibration();
@@ -36,9 +44,7 @@ export function update(options){
 function render(trigger,value,delta){
   let angle=value*180;
   let sum=trigger.filter.sum;
-  //console.log("acc "+accumulated+" thr "+trigger.threshold);
-  progress.update(angle,sum/trigger.threshold*360);
-  document.getElementById("delta").textContent=delta.toFixed(1);
+  //console.log("value:"+value+ "delta:"+delta+" thr:"+trigger.threshold);
   document.getElementById("accumulated").textContent=sum.toFixed(1);
   document.getElementById("threshold").textContent=trigger.threshold.toFixed(1);
   chart.update(trigger.filter.values);

@@ -62,7 +62,7 @@ export class Trigger{
 
     startCalibration(){
         this.calibrationEnable=true;
-        this.threshold=0.000000001;
+        this.threshold=0.001;
         this.start();
     }
 

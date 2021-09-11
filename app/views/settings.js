@@ -1,7 +1,7 @@
 
 import * as document from "document";
-import * as settings from "../lib/settingStorage";
 import { initMenuItem } from "../lib/menu";
+import * as settings from "../lib/settingStorage";
 
 export function init(){
     console.log("settings start");
@@ -17,5 +17,6 @@ export function update(){
       
     buttonCallbacks.forEach(initMenuItem);
 
-    document.getElementById("launch-Calibration-view/text").textContent="Launch thr:"+settings.get("launchThreshold","ND");
+    document.getElementById("launch-Calibration-view/text").textContent="Launch thr:"+settings.get("launchThreshold",0).toFixed(2);
+    document.getElementById("landing-Calibration-view/text").textContent="Landing thr:"+settings.get("landingThreshold",0).toFixed(2);
 }
