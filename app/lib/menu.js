@@ -1,13 +1,13 @@
 import * as document from "document";
 
 export function initMenuItem(view){
-    const [buttonID, viewJSLoader] = view;
+    const [buttonID, viewJSLoader, initArguments] = view;
     try{
         console.log("preparing view item "+buttonID);
         var item=document.getElementById(buttonID);
         item.onclick=() => {
         viewJSLoader().then(({ init, update }) => {
-            init().then(update).catch((err) => {
+            init(initArguments).then(update).catch((err) => {
                 console.error(`Error loading view: ${buttonID} - ${err}`);
             });
         }).catch((err) => {

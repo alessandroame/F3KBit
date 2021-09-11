@@ -10,19 +10,26 @@ export function init(){
     return document.location.assign("settings.view");
 }
 
+let launch;
+let landing;
 export function update(){
     console.log("settings update");
   
     const buttonCallbacks = [
-        ["launch-Calibration-view/start", () => import("./launchCalibration")],
-        ["landing-Calibration-view/start",  () => import("./landingCalibration")],
+        ["launch-Calibration-view/start", () => import("./launchCalibration"), {a:1 ,callback:updateSettings}],
+        ["landing-Calibration-view/start",  () => import("./landingCalibration"), {}]
       ];
       
     buttonCallbacks.forEach(initMenuItem);
-
-    document.getElementById("launch-Calibration-view/text").textContent="Launch thr:"+settings.get("launchThreshold",0).toFixed(2);
-    document.getElementById("landing-Calibration-view/text").textContent="Landing thr:"+settings.get("landingThreshold",0).toFixed(2);
+    launch=document.getElementById("launch-Calibration-view/text");
+    landing=document.getElementById("landing-Calibration-view/text");
+    updateSettings();
 }
 
+function updateSettings(a){
+console.error(a);
+    launch.textContent="Launch thr:"+settings.get("launchThreshold",0).toFixed(2);
+    landing.textContent="Landing thr:"+settings.get("landingThreshold",0).toFixed(2);
+}
 
 

@@ -3,8 +3,10 @@ import * as calibration from "./calibration"
 import { OrientationSensor } from "orientation";
 import * as settings from "../lib/settingStorage";
 let backswipeCallback;
-export function init(){
-    console.log("launchCalibration start");
+let callback;
+export function init(options){
+    console.log("launchCalibration start ");
+    callback=options.callback;
   return document.location.assign("launchCalibration.view");
 }
 export function update(){
@@ -26,4 +28,5 @@ function onCalibrated(thr){
   console.log("launchCalibration onCalibrated: "+thr);
   settings.set("launchThreshold",thr);
   document.history.back(); 
+  if (callback) callback(thr);
 }
