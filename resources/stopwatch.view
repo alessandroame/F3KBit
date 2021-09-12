@@ -1,5 +1,11 @@
-<svg>
+<svg class="background">
   <animate attributeName="x" from="100%" to="0" begin="load" dur="0.3" easing="ease-in-out" />
+  <animate attributeName="x" to="0" begin="enable" dur="0.3" easing="ease-in-out" />
+
+  <defs>
+    <link rel="import" href="/mnt/sysassets/widgets/text_button.defs" />
+  </defs>
+  
   <rect x="0" y="0" width="100%" height="100%" fill="#000000" />
 
   <text class="view-title h3 uppercase application-fill center-text" >
@@ -7,7 +13,7 @@
   </text>
 
   <textarea id="description" class="textarea-msg">
-      Click the button to start the stopwatch: it will automatically detect the launch and will stop by by rotating you whirst 3 time.
+      Stopwatch will automatically detect the launch and stops by rotating you whirst 3 time.
   </textarea>
 
    <use id="btn-start" href="#text-button" class="text-button bottom application-fill"/>
