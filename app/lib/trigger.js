@@ -1,4 +1,5 @@
 import { Filter } from "./filter";
+import { OrientationSensor } from "orientation";
 
 export class Trigger{
     onTrigger=null;
@@ -8,22 +9,24 @@ export class Trigger{
     axisToObserve=null; 
     filter;
     maxDiff=1;
-    threshold=1;
+    threshold=null;
     lastValue=null;
     filterSize=20;
 
-    constructor(sensor,axisToObserve,timeoutInSeconds,frequency,fitlterSize){
+    constructor(axisToObserve,timeoutInSeconds,frequency,fitlterSize,threshold){
         console.log("Trigger CTOR enter");
         let me=this;
 
-        me.sensor = new sensor({ frequency: frequency??20 });
+        me.threshold=threshold??0.1;
+        me.axisToObserve=axisToObserve;
+        me.timeoutInSeconds=timeoutInSeconds??30;
+        me.filterSize=fitlterSize??20;
+
+        me.sensor = new OrientationSensor({ frequency: frequency??20 });
         me.sensor.addEventListener("reading", ()=> {
             me.onOrientationChanged(me.sensor.quaternion);
         });
 
-        me.axisToObserve=axisToObserve;
-        me.filterSize=fitlterSize??20;
-        me.timeoutInSeconds=timeoutInSeconds??30;
         this.reset();
         console.log("Trigger CTOR exit");
     }

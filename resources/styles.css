@@ -42,16 +42,17 @@
 
 .uppercase              { text-transform: uppercase; }
 
+#btn-ready #text        { text-buffer: "Ready"; }
+
+#btn-start #text        { text-buffer: "Start"; }
+#btn-stop #text        { text-buffer: "Stop"; }
+
 #btn-calibrate #text        { text-buffer: "Calibrate"; }
 #btn-calibration-done #text { text-buffer: "Done"; }
 
 #btn-cancel #text       { text-buffer: "Cancel"; }
 #btn-prev #text         { text-buffer: "Previous"; }
 #btn-next #text         { text-buffer: "Next"; }
-
-#duration               { text-buffer: "00:00:000" }
-#label-session          { text-buffer: "Session active"; }
-#label-animate          { text-buffer: "Animate view reset"; }
 
 .defaultText {
   font-size: 20;

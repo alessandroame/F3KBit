@@ -4,6 +4,8 @@ export function initMenuItem(view){
     const [buttonID, viewJSLoader, initArguments] = view;
     try{
         console.log("preparing view item "+buttonID);
+       /* var err = new Error();
+        console.warn(err.stack)*/
         var item=document.getElementById(buttonID);
         item.onclick=() => {
         viewJSLoader().then(({ init, update }) => {
@@ -18,3 +20,18 @@ export function initMenuItem(view){
         console.error(`error on initMenuItem: ${buttonID} - ${error}`);
     }
 }
+
+export function replace(view,initOptions,updateOptions){
+    try{
+        initOptions.replace=true;
+        console.log("assign view item "+view);
+        view.init(initOptions).then(()=>{
+            view.update(updateOptions);
+        }).catch((err) => {
+            console.error(`Error loading view: ${view} - ${err}`);
+        });
+    }catch (error){
+        console.error(`error on view: ${view} - ${error}`);
+    }
+}
+

@@ -11,7 +11,7 @@ let trigger;
 
 export function init(){
   console.log("calibration start");
-  return document.location.assign("calibration.view");
+  return document.location.replace("calibration.view");
 }
 export function update(options){
   console.log("calibration update "+JSON.stringify(options) );
@@ -32,7 +32,6 @@ export function update(options){
     document.getElementById("btn-calibration-done").text="Done";
     document.getElementById("btn-calibration-done").onclick=()=>{
       options.onCalibrated(trigger.threshold);
-      document.history.back();
     };
     vibration.start("confirmation-max");
   };
