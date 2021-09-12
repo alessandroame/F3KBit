@@ -1,14 +1,123 @@
-.defaultText {
-  font-size: 32;
+
+.application-fill           { fill: fb-cyan; }
+.foreground-fill            { fill: fb-white; }
+.background-fill            { fill: fb-black; }
+
+
+.bar{
+  fill:"#15b9ed"
+}
+.view-title {
+  x: 50%;
+  y: 30;
+  font-size: 20;
+  text-length: 300;
+  text-anchor: middle;
+  width: 100%;
+}
+.data {
+  font-size: 38;
   font-family: System-Regular;
   font-weight: regular;
   text-length: 32;
+  fill: "fb-white";
+}
+.left{
+  text-anchor: end;
+}
+.middle{
+  text-anchor: middle;
+}
+.right{
+  text-anchor: start;
 }
 
-#background {
+.text-button            { height: 50; }
+.text-button text       { x: 50%; y: 35; width: 100%; text-anchor: middle; text-length: 64; }
+.text-button.primary    { y: 100%-106; }
+.text-button.secondary  { y: 100%-50; }
+.text-button.bottom     { y: 100%-60; }
+
+.toggle-switch          { x: 100%-70; }
+
+.uppercase              { text-transform: uppercase; }
+
+#btn-ready #text        { text-buffer: "Ready"; }
+
+#btn-start #text        { text-buffer: "Start"; }
+#btn-stop #text        { text-buffer: "Stop"; }
+
+#btn-calibrate #text        { text-buffer: "Calibrate"; }
+#btn-calibration-done #text { text-buffer: "Done"; }
+
+#btn-cancel #text       { text-buffer: "Cancel"; }
+#btn-prev #text         { text-buffer: "Previous"; }
+#btn-next #text         { text-buffer: "Next"; }
+
+.defaultText {
+  font-size: 20;
+  font-family: System-Regular;
+  font-weight: regular;
+  text-length: 32;
+  fill: "fb-white";
+}
+
+
+.tile-list-item {
+  height: 80;
+}
+
+.tile-list-header {
+  height: 69;
+}
+
+.tile-background {
+  x: 0;
+  y: 0;
   width: 100%;
-  height: 100%;
-  fill: white;
+  height: 100%-2;
+  fill: #000000;
+  opacity: 0.25;
 }
 
+.tile-list-item text {
+  font-size: 32;
+  text-length: 64;
+  x: 15;
+  y: 55%;
+}
+
+.tile-list-header text {
+  x: 50%;
+}
+
+.tile-list-icon {
+  x: 10%;
+  y: 25%;
+  width: 50;
+  height: 50;
+}
+
+.my-button {
+  height: 10%;
+}
+
+.my-button text {
+  font-size: 24;
+  x: 50%;
+  text-anchor: middle;
+  fill: fb-white;
+  opacity: 1;
+}
+
+
+.textarea-msg {
+  x: 10%;
+  y: $-13;
+  font-size: 30;
+  text-length: 300;
+  text-anchor: middle;
+  width: 80%;
+  fill: "fb-white";
+}
 

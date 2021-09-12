@@ -11,8 +11,8 @@
     "appUUID": "0edd5fae-1b28-4b85-ae92-80e5f706fba8",
     "appType": "app",
     "appDisplayName": "F3K",
-    "iconFile": "./resources/img/app_icon.png",
-    "wipeColor": "#ffffff",
+    "iconFile": "resources/img/app_icon.png",
+    "wipeColor": "#00CCFF",
     "requestedPermissions": [],
     "buildTargets": [
       "atlas",

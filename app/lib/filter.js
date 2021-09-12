@@ -1,4 +1,5 @@
 export class Filter{
+    onUpdate=null;
     constructor(size){
         this.size=size;
         this.reset();
@@ -18,6 +19,8 @@ export class Filter{
         this.values[this.size-1]=value;
         this.sum+=value;
         this.avg=this.sum/this.size;
+        if (this.onUpdate) onUpdate(this);
     }
+
 
 }

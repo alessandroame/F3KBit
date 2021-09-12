@@ -1,31 +1,30 @@
-import document from "document";
-export class ChartVM{
+import * as document from "document";
+export class ChartView{
 
     constructor(id){
-        console.log("ChartVM CTOR enter");
+        console.log("ChartView CTOR enter id["+id+"]");
         this.chart=document.getElementById(id);
         this.items = this.chart.getElementsByClassName("bar");
         this.items.forEach((element, index) => {
             element.height=0;
         });
-        console.log("ChartVM CTOR exit");
+        console.log("ChartView CTOR exit");
     }
 
     update(data){
-        //console.log(typeof this,this,this.chart);
         //console.log(data);
         let xScale=data.length/this.items.length;
         for (let i=0;i<this.items.length;i++)
         {
             let dSum=0;
             for (var n=0;n<xScale;n++){
-                let d=data[i*xScale+n];
-                if (!d) continue;
+                let index=Math.floor(i*xScale+n);
+                let d=data[index];
+                //console.log("d: "+d+" i:"+i+" n:"+n +" xScale:"+xScale+ " index:"+(index));
                 dSum+=d;
             }
-            //console.log(dSum+"  "+xScale);
-
             var h=400*dSum;
+            //console.log("h: "+h+" sum:"+dSum);
             this.items[i].y=-h;
             this.items[i].height=h;
         }
