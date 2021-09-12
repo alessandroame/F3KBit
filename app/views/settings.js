@@ -6,7 +6,6 @@ import * as settings from "../lib/settingStorage";
 export function init(options){
     console.log("settings start");
     if (options && options.replace){
-        console.warn("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         return document.location.replace("settings.view");
     }else return document.location.assign("settings.view");
 }

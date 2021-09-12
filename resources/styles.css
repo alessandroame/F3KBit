@@ -42,6 +42,8 @@
 
 .uppercase              { text-transform: uppercase; }
 
+#btn-wait-launch #text        { text-buffer: "Wait for launch..."; }
+
 #btn-ready #text        { text-buffer: "Ready"; }
 
 #btn-start #text        { text-buffer: "Start"; }

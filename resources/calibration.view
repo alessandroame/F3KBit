@@ -2,7 +2,6 @@
   <defs>  
         <link rel="import" href="chart.defs" />
         <link rel="import" href="touch_slider.defs" />
-        <link rel="import" href="progress.defs" />
         <link rel="import" href="/mnt/sysassets/widgets/text_button.defs" />
     </defs>
 

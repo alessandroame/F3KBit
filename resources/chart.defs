@@ -3,9 +3,9 @@
 		<symbol id="chart">
 			<line x1="0%" y1="0" x2="100%" y2="0" class="bar" stroke-width="1" opacity="0.3"/>
 		
-<rect id="v0" x="0%" y="0" width="5%-2" height="10" class="bar"/>
-<rect id="v1" x="5%" y="0" width="5%-2" height="20" class="bar"/>
-<rect id="v2" x="10%" y="0" width="5%-2" height="30" class="bar"/>
+<rect id="v0" x="0%" y="0" width="5%-2" height="0" class="bar"/>
+<rect id="v1" x="5%" y="0" width="5%-2" height="0" class="bar"/>
+<rect id="v2" x="10%" y="0" width="5%-2" height="0" class="bar"/>
 <rect id="v3" x="15%" y="0" width="5%-2" height="0" class="bar"/>
 <rect id="v4" x="20%" y="0" width="5%-2" height="0" class="bar"/>
 <rect id="v5" x="25%" y="0" width="5%-2" height="0" class="bar"/>

@@ -14,7 +14,7 @@ export class Trigger{
     filterSize=20;
 
     constructor(axisToObserve,timeoutInSeconds,frequency,fitlterSize,threshold){
-        console.log("Trigger CTOR enter");
+        console.log("Trigger CTOR enter THR:"+threshold );
         let me=this;
 
         me.threshold=threshold??0.1;
@@ -38,7 +38,7 @@ export class Trigger{
     }
 
     start(){
-        console.log("Trigger START enter");
+        console.log("Trigger START enter THR:"+this.threshold);
         this.reset();
         this.sensor.start();
         this.isStarted=true;

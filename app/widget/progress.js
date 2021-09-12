@@ -6,7 +6,7 @@ export class ProgressView{
     }
     update(heading,progress){
         //console.log("ProgressView heading:"+heading+" progress:"+progress);
-        this.ui.getElementById("goal").sweepAngle=progress;
+        this.ui.getElementById("goal").sweepAngle=progress*360;
         this.ui.getElementById("direction").groupTransform.rotate.angle=-heading;
     }
 }
