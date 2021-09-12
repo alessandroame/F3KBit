@@ -1,9 +1,11 @@
 <svg>
     <defs>
         <symbol  id="progress">
-            <arc id="goal" x="-70" y="-70" width="140" height="140" fill="white" arc-width="10" start-angle="0" sweep-angle="0" /> 
+            <arc x="-70" y="-70" width="140" height="140" fill="white" arc-width="10" start-angle="0" sweep-angle="360" opacity="0.2" /> 
+            <arc id="goal" x="-70" y="-70" width="140" height="140" class="bar" arc-width="10" start-angle="0" sweep-angle="0" /> 
             <g  id="direction">
-                <line x1="0" y1="0" x2="0" y2="-60" stroke-width="3"  class="bar"/>
+                <line x1="2" y1="0" x2="0" y2="-60" stroke-width="3" class="bar"/>
+                <line x1="-2" y1="0" x2="0" y2="-60" stroke-width="3" class="bar"/>
             </g>
         </symbol>
     </defs>

@@ -7,6 +7,7 @@
 .bar{
   fill:"#15b9ed"
 }
+
 .view-title {
   x: 50%;
   y: 30;
@@ -42,7 +43,19 @@
 
 .uppercase              { text-transform: uppercase; }
 
-#btn-wait-launch #text        { text-buffer: "Wait for launch..."; }
+#btn-wait-launch #text        { text-buffer: "Wait launch..."; }
+#btn-wait-landing #text        { text-buffer: "Wait landing.."; }
+
+#fly-time{
+  fill:"#15b9ed";
+  x: 50%;
+  y: 45%;
+  font-size: 85;
+  text-length: 8;
+  text-anchor: middle;
+  width: 100%;
+  text-buffer: "-- : --"
+}
 
 #btn-ready #text        { text-buffer: "Ready"; }
 

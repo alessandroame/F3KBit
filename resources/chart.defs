@@ -1,28 +1,28 @@
 <svg>
 	<defs>
 		<symbol id="chart">
-			<line x1="0%" y1="0" x2="100%" y2="0" class="bar" stroke-width="1" opacity="0.3"/>
+		<line x1="0%" y1="0" x2="100%" y2="0" class="bar" stroke-width="1" opacity="0.3"/>
 		
-<rect id="v0" x="0%" y="0" width="5%-2" height="0" class="bar"/>
-<rect id="v1" x="5%" y="0" width="5%-2" height="0" class="bar"/>
-<rect id="v2" x="10%" y="0" width="5%-2" height="0" class="bar"/>
-<rect id="v3" x="15%" y="0" width="5%-2" height="0" class="bar"/>
-<rect id="v4" x="20%" y="0" width="5%-2" height="0" class="bar"/>
-<rect id="v5" x="25%" y="0" width="5%-2" height="0" class="bar"/>
-<rect id="v6" x="30%" y="0" width="5%-2" height="0" class="bar"/>
-<rect id="v7" x="35%" y="0" width="5%-2" height="0" class="bar"/>
-<rect id="v8" x="40%" y="0" width="5%-2" height="0" class="bar"/>
-<rect id="v9" x="45%" y="0" width="5%-2" height="0" class="bar"/>
-<rect id="v10" x="50%" y="0" width="5%-2" height="0" class="bar"/>
-<rect id="v11" x="55%" y="0" width="5%-2" height="0" class="bar"/>
-<rect id="v12" x="60%" y="0" width="5%-2" height="0" class="bar"/>
-<rect id="v13" x="65%" y="0" width="5%-2" height="0" class="bar"/>
-<rect id="v14" x="70%" y="0" width="5%-2" height="0" class="bar"/>
-<rect id="v15" x="75%" y="0" width="5%-2" height="0" class="bar"/>
-<rect id="v16" x="80%" y="0" width="5%-2" height="0" class="bar"/>
-<rect id="v17" x="85%" y="0" width="5%-2" height="0" class="bar"/>
-<rect id="v18" x="90%" y="0" width="5%-2" height="0" class="bar"/>
-<rect id="v19" x="95%" y="0" width="5%-2" height="0" class="bar"/>
+		<rect id="v0" x="0%" y="0" width="5%-2" height="0" class="bar"/>
+		<rect id="v1" x="5%" y="0" width="5%-2" height="0" class="bar"/>
+		<rect id="v2" x="10%" y="0" width="5%-2" height="0" class="bar"/>
+		<rect id="v3" x="15%" y="0" width="5%-2" height="0" class="bar"/>
+		<rect id="v4" x="20%" y="0" width="5%-2" height="0" class="bar"/>
+		<rect id="v5" x="25%" y="0" width="5%-2" height="0" class="bar"/>
+		<rect id="v6" x="30%" y="0" width="5%-2" height="0" class="bar"/>
+		<rect id="v7" x="35%" y="0" width="5%-2" height="0" class="bar"/>
+		<rect id="v8" x="40%" y="0" width="5%-2" height="0" class="bar"/>
+		<rect id="v9" x="45%" y="0" width="5%-2" height="0" class="bar"/>
+		<rect id="v10" x="50%" y="0" width="5%-2" height="0" class="bar"/>
+		<rect id="v11" x="55%" y="0" width="5%-2" height="0" class="bar"/>
+		<rect id="v12" x="60%" y="0" width="5%-2" height="0" class="bar"/>
+		<rect id="v13" x="65%" y="0" width="5%-2" height="0" class="bar"/>
+		<rect id="v14" x="70%" y="0" width="5%-2" height="0" class="bar"/>
+		<rect id="v15" x="75%" y="0" width="5%-2" height="0" class="bar"/>
+		<rect id="v16" x="80%" y="0" width="5%-2" height="0" class="bar"/>
+		<rect id="v17" x="85%" y="0" width="5%-2" height="0" class="bar"/>
+		<rect id="v18" x="90%" y="0" width="5%-2" height="0" class="bar"/>
+		<rect id="v19" x="95%" y="0" width="5%-2" height="0" class="bar"/>
 
         </symbol>
 	</defs>

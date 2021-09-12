@@ -4,6 +4,8 @@ import { ChartView } from "../widget/chart";
 import { TouchSliderView } from "../widget/touch_slider";
 import { Trigger } from "../lib/trigger";
 import { vibration } from "haptics";
+import * as settingsView from "./settings";
+import * as view from "../lib/viewUtils";
 
 let chart;
 let touchSlider;
@@ -26,12 +28,14 @@ export function update(options){
   touchSlider.onUpdate=(v)=>{ 
     if (trigger.isStarted) trigger.push(v); 
   };
-  trigger=new Trigger(options.sensor,options.axis);
+  trigger=new Trigger({axis:options.axis});
   trigger.onUpdate=render;
   trigger.onCalibrated=()=>{
     document.getElementById("btn-calibration-done").text="Done";
     document.getElementById("btn-calibration-done").onclick=()=>{
-      options.onCalibrated(trigger.threshold);
+      console.log("launchCalibration onCalibrated: "+trigger.threshold);
+      if (options.onCalibrated)options.onCalibrated(trigger.threshold);
+      view.replace(settingsView,"settings");
     };
     vibration.start("confirmation-max");
   };

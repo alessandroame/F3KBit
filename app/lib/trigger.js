@@ -6,19 +6,20 @@ export class Trigger{
     onCalibrated=null;
     onUpdate=null;
     
-    axisToObserve=null; 
+    axis=null; 
     filter;
     maxDiff=1;
     threshold=null;
     lastValue=null;
     filterSize=20;
 
-    constructor(axisToObserve,timeoutInSeconds,frequency,fitlterSize,threshold){
-        console.log("Trigger CTOR enter THR:"+threshold );
+    constructor(options){
+        const {axis,timeoutInSeconds,frequency,fitlterSize,threshold}=options;
+        console.log("Trigger CTOR enter Axis:"+axis+" THR:"+threshold );
         let me=this;
 
         me.threshold=threshold??0.1;
-        me.axisToObserve=axisToObserve;
+        me.axis=axis;
         me.timeoutInSeconds=timeoutInSeconds??30;
         me.filterSize=fitlterSize??20;
 
@@ -76,7 +77,7 @@ export class Trigger{
         let qk = q[3];
   
         let angle=0;
-        switch (this.axisToObserve){
+        switch (this.axis){
             case 1:
                 // Roll:
                 let t0 = 2 * (qr*qi + qj*qk);
@@ -97,12 +98,12 @@ export class Trigger{
                 angle = Math.atan2(t3, t4);
                 break;
             default:
-                console.error("Unhandled axis:"+this.axisToObserve);
+                console.error("Unhandled axis:"+this.axis);
                 return;
         }
 
         this.push(angle);
-        //console.log("axis ["+this.axisToObserve+"]="+angle);
+        //console.log("axis ["+this.axis+"]="+angle);
     }
 
     push(value){

@@ -1,0 +1,20 @@
+<svg class="background">
+  <animate attributeName="x" from="100%" to="0" begin="load" dur="0.3" easing="ease-in-out" />
+  <animate attributeName="x" to="0" begin="enable" dur="0.3" easing="ease-in-out" />  <defs>
+        <link rel="import" href="chart.defs" />
+        <link rel="import" href="touch_slider.defs" />
+        <link rel="import" href="progress.defs" />
+        <link rel="import" href="/mnt/sysassets/widgets/text_button.defs" />
+  </defs>
+  <rect x="0" y="0" width="100%" height="100%" fill="#000000" />
+
+  <text class="view-title h3 uppercase application-fill center-text" >
+      Fly time:
+  </text>
+
+  <text id="fly-time" />
+
+  <use href="#touch_slider" id="touch_slider" x="0%" y="0%"/> 
+
+  <use id="btn-wait-landing" href="#text-button" class="text-button bottom application-fill"/>
+</svg>

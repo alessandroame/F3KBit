@@ -1,8 +1,6 @@
 import document from "document";
 import * as calibration from "./calibration";
-import * as settings from "../lib/settingStorage";
-import * as view from "../lib/viewUtils";
-import * as settingsView from "./settings";
+import { Settings } from "../lib/settingStorage";
 
 export function init(){
   console.log("landingCalibration start");
@@ -13,16 +11,12 @@ export function update(){
     document.getElementById("btn-calibrate").addEventListener("click",()=>{
       calibration.init()
       .then(()=>{
-        calibration.update({axis:1, onCalibrated: onCalibrated });
-      })
+        calibration.update({
+          axis:1,
+          onCalibrated:(v)=>{Settings.set("landingThreshold",v);} });
+        })
       .catch((err) => {
         console.error(`Failed to load calibration - ${err}`);
       });
     });
-}
-
-function onCalibrated(thr){
-  console.log("landingCalibration onCalibrated: "+thr);
-  settings.set("landingThreshold",thr);
-  view.replace(settingsView,"settings");
 }

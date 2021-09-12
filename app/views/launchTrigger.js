@@ -1,28 +1,31 @@
 import * as document from "document";
+import { vibration } from "haptics";
+import { display } from "display";
 
 import { ProgressView } from "../widget/progress";
 import { ChartView } from "../widget/chart";
 import { TouchSliderView } from "../widget/touch_slider";
 import {Trigger} from "../lib/trigger"
-import * as settings from "../lib/settingStorage";
+import { Settings } from "../lib/settingStorage";
+import *  as landingTrigger from "./landingTrigger"
 let chart;
 let progress;
 let touchSlider;
 let trigger;
 export function init(options){
-  console.log("launchTrigger start ");
-  return document.location.assign("launchTrigger.view");
+  console.log("launchTrigger start options:"+JSON.stringify(options));
+
+  return document.location.replace("launchTrigger.view");
 }
-export function update(){
-  console.log("launchTrigger update");
+export function update(options){
+  console.log("launchTrigger update options:"+JSON.stringify(options));
+  display.poke();
 
   touchSlider=new TouchSliderView("touch_slider");
   progress=new ProgressView("progress");
   chart=new ChartView("chart");
 
-  console.error("THR from settings:"+settings.get("launchThreshold",1));
-
-  trigger=new Trigger({axisToObserve:3,threshold:settings.get("launchThreshold",1)});
+  trigger=new Trigger({axis:3,threshold:Settings.get("launchThreshold",1)});
   trigger.onUpdate=render;
   trigger.onTrigger=onTrigger;
   trigger.onTimeout=onTimeout;
@@ -32,7 +35,7 @@ export function update(){
   };
 
   document.getElementById("btn-wait-launch").onclick=()=>{ 
-    console.error("TODO");
+    openLandingTrigger();
   };
 
   trigger.start();
@@ -46,8 +49,10 @@ function render(trigger,value){
 }
 
 function onTrigger(){
-  console.log("launchTrigger onTriggered");
-  console.error("launchTrigger TODO Startstopwatch");
+  console.log("launchTrigger onTrigger");
+  trigger.stop();
+  vibration.start("confirmation-max");
+  openLandingTrigger();
 }
 
 function onTimeout(){
@@ -55,3 +60,18 @@ function onTimeout(){
   console.error("launchTrigger TODO onTimeout");
 }
 
+function openLandingTrigger(){
+  var err=new Error();
+  console.error(err.stack);
+  landingTrigger.init()
+    .then(()=>{
+      try {
+        landingTrigger.update();
+      }catch(err){
+        console.error(err);
+      }
+    })
+    .catch((err) => {
+      console.error(`Failed to load landingTrigger - ${err}`);
+    });
+}

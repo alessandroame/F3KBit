@@ -1,8 +1,6 @@
 import * as document from "document";
 import * as calibration from "./calibration"
-import * as settings from "../lib/settingStorage";
-import * as settingsView from "./settings";
-import * as view from "../lib/viewUtils";
+import { Settings } from "../lib/settingStorage";
 
 export function init(){
     console.log("launchCalibration start ");
@@ -14,7 +12,9 @@ export function update(){
     document.getElementById("btn-calibrate").onclick=()=>{
       calibration.init()
       .then(()=>{
-        calibration.update({axis:3, onCalibrated: onCalibrated });
+        calibration.update({
+          axis:3,
+          onCalibrated:(v)=>{Settings.set("launchThreshold",v);} });
       })
       .catch((err) => {
         console.error(`Failed to load calibration - ${err}`);
@@ -22,8 +22,3 @@ export function update(){
     };
 }
 
-function onCalibrated(thr){
-  console.log("launchCalibration onCalibrated: "+thr);
-  settings.set("launchThreshold",thr);
-  view.replace(settingsView,"settings");
-}
