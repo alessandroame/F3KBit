@@ -41,6 +41,14 @@ export function update(options){
   intervalId=setInterval(() => {
     render();
   }, 50);
+
+  document.onbeforeunload=(evt)=>{
+    evt.preventDefault();
+    return false;
+    //clearInterval(intervalId);
+    //trigger.stop();
+    //document.getElementId("background").x=0;//.animate("enable");
+  };
 }
 
 function render(showMS){
@@ -56,7 +64,6 @@ function render(showMS){
 
 function onTrigger(){
   console.log("landingTrigger onTrigger");
-  trigger.stop();
   render(true);
   vibration.start("confirmation-max");
 
@@ -66,7 +73,6 @@ function onTrigger(){
     openLaunchTrigger();
   };
   clearInterval(intervalId);
-  console.error("landingTrigger TODO navigate to stopwatch");
 }
 
 function onTimeout(){

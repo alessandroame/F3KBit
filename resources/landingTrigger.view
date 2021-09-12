@@ -1,6 +1,7 @@
 <svg class="background">
   <animate attributeName="x" from="100%" to="0" begin="load" dur="0.3" easing="ease-in-out" />
-  <animate attributeName="x" to="0" begin="enable" dur="0.3" easing="ease-in-out" />  <defs>
+  <animate attributeName="x" to="0" begin="enable" dur="0.3" easing="ease-in-out" /> 
+  <defs>
         <link rel="import" href="chart.defs" />
         <link rel="import" href="touch_slider.defs" />
         <link rel="import" href="progress.defs" />

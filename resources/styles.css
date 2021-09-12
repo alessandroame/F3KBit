@@ -54,7 +54,8 @@
   text-length: 8;
   text-anchor: middle;
   width: 100%;
-  text-buffer: "-- : --"
+  text-buffer: "-- : --";
+  text-length: 64; 
 }
 
 #btn-ready #text        { text-buffer: "Ready"; }

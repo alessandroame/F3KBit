@@ -57,8 +57,6 @@ export class Trigger{
         if (this.calibrationEnable && this.onCalibrated) {
             console.log("new threshold is "+this.threshold)
             this.onCalibrated(this.threshold);
-        }else if (this.onTriggered){
-            this.onTriggered();
         }
         this.calibrationEnable=false;
         console.log("Trigger STOP exit");
@@ -107,6 +105,7 @@ export class Trigger{
     }
 
     push(value){
+        if (!this.isStarted) return;
         if(this.lastValue==null){ 
             this.lastValue=value;
             return;
@@ -121,7 +120,12 @@ export class Trigger{
             this.threshold=Math.max(this.threshold,this.filter.sum);
        }else{
             if (this.filter.sum>this.threshold) {
-                if (this.onTrigger) this.onTrigger(this);
+                this.stop();
+                if (this.onTrigger)
+                {
+                    //console.error(new Error().stack);
+                    this.onTrigger(this);
+                }
             }
         }
         this.lastValue=value;

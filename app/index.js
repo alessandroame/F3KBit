@@ -2,8 +2,8 @@ import { initMenuItem } from "./lib/viewUtils";
 import * as document from "document";
 
 let ImOnTopOfNavigationStack=document.history.length<2;
-if(ImOnTopOfNavigationStack){
-  console.log("Main menu started");
+if(ImOnTopOfNavigationStack||true){
+  console.error("Main menu started");
   const buttonCallbacks = [
     ["stopwatch-view/start",   () => import("./views/stopwatch")],
     //["stopwatch-view/start",   () => import("./views/launchCalibration")],
@@ -12,5 +12,5 @@ if(ImOnTopOfNavigationStack){
   ];
   buttonCallbacks.forEach(initMenuItem);
 }else{
-  //console.error("Main menu skipped "+document.history.length);
+  console.error("Main menu skipped "+document.history.length);
 }

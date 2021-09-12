@@ -31,15 +31,20 @@ export function update(options){
   trigger.onTimeout=onTimeout;
 
   touchSlider.onUpdate=(v)=>{ 
+    console.warn(new Error().stack);
     if (trigger.isStarted) trigger.push(v); 
   };
 
   document.getElementById("btn-wait-launch").onclick=()=>{ 
-    openLandingTrigger();
+    trigger.stop();
+    openLandingTrigger(2);
   };
 
   trigger.start();
 
+  document.onbeforeunload=(evt)=>{
+    trigger.stop();
+  };
 }
 
 function render(trigger,value){
@@ -50,7 +55,6 @@ function render(trigger,value){
 
 function onTrigger(){
   console.log("launchTrigger onTrigger");
-  trigger.stop();
   vibration.start("confirmation-max");
   openLandingTrigger();
 }
@@ -61,8 +65,7 @@ function onTimeout(){
 }
 
 function openLandingTrigger(){
-  var err=new Error();
-  console.error(err.stack);
+  //console.error("openLandingTrigger ");
   landingTrigger.init()
     .then(()=>{
       try {
