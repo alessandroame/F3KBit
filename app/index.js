@@ -14,3 +14,10 @@ if(ImOnTopOfNavigationStack||true){
 }else{
   console.error("Main menu skipped "+document.history.length);
 }
+
+document.onload=()=>{
+  document.error("document.onload");
+}
+document.onreload=()=>{
+  document.error("document.onREload");
+}

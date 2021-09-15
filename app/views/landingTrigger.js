@@ -43,11 +43,8 @@ export function update(options){
   }, 50);
 
   document.onbeforeunload=(evt)=>{
-    evt.preventDefault();
-    return false;
-    //clearInterval(intervalId);
-    //trigger.stop();
-    //document.getElementId("background").x=0;//.animate("enable");
+    trigger.stop();
+    clearInterval(intervalId);
   };
 }
 
@@ -65,7 +62,8 @@ function render(showMS){
 function onTrigger(){
   console.log("landingTrigger onTrigger");
   render(true);
-  vibration.start("confirmation-max");
+  display.poke();
+  vibration.start("alert");
 
   document.getElementById("btn-wait-landing").text="Done";
   
