@@ -54,7 +54,7 @@ function render(showMS){
   const mins = Math.floor(secs / 60);
   let text=[`0${mins}`.slice(-2), `0${secs}`.slice(-2)].join(':');
   if (showMS){
-    text+="."+((millis/100) % 100);
+    text+="."+`00${(millis/100) % 100}`.slice(-2);
   }
   document.getElementById("fly-time").textContent=text;
 }

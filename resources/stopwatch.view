@@ -13,7 +13,7 @@
   </text>
 
   <textarea id="description" class="textarea-msg">
-      Stopwatch will automatically detect the launch and stops by rotating you whirst 3 time.
+      Stopwatch will automatically detect the launch and stops by rotating your whirst 3 time.
   </textarea>
 
    <use id="btn-start" href="#text-button" class="text-button bottom application-fill"/>
