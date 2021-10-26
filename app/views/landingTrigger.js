@@ -63,8 +63,10 @@ function onTrigger(){
   console.log("landingTrigger onTrigger");
   render(true);
   display.poke();
-  vibration.start("alert");
-
+  
+  vibration.start("confirmation-max");
+  setTimeout(() => { vibration.start("confirmation-max"); }, 300);
+  setTimeout(() => { vibration.start("confirmation-max"); }, 600);
   document.getElementById("btn-wait-landing").text="Done";
   
   document.getElementById("btn-wait-landing").onclick=()=>{ 
